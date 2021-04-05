@@ -15,10 +15,7 @@ return require('packer').startup(function(use)
 
     use {
       'mhinz/vim-startify',
-      config = function()
-        vim.g['startify_change_to_vcs_root'] = 1
-        vim.g['startify_change_to_dir'] = 0
-      end
+      config = [[require'config.startify']],
     }
 
     use {
@@ -34,7 +31,7 @@ return require('packer').startup(function(use)
     use 'tpope/vim-commentary'
     use {
         'tpope/vim-fugitive',
-        config = function() require'plugin/fugitive'.setup() end
+        config = [[require'config.fugitive']]
     }
 
     use 'preservim/vimux'
@@ -42,22 +39,18 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
-        config = function() require'plugin/telescope'.setup() end
+        config = [[require'config.telescope']],
     }
 
     use {
         'norcalli/nvim-colorizer.lua',
-        config = function() require'colorizer'.setup() end
+        config = [[require'colorizer'.setup()]],
     }
 
     use {
         'nvim-treesitter/nvim-treesitter',
-        run = function()
-            vim.cmd [[
-      TSUpdate
-    ]]
-        end,
-        config = function() require'plugin/treesitter'.setup() end
+        run = 'vim.cmd [[ TSUpdate ]]',
+        config =  [[require'config.treesitter']],
     }
 
     -- js/ts [[[
@@ -80,8 +73,8 @@ return require('packer').startup(function(use)
         'windwp/nvim-ts-autotag',
         opt = true,
         ft = {'javascript', 'typescript', 'typescriptreact'},
-        requires = {'nvim-treesitter/nvim-treesitter'},
-        config = function() require('nvim-ts-autotag').setup() end
+        requires = { 'nvim-treesitter/nvim-treesitter' },
+        config = [[require('nvim-ts-autotag').setup()]]
     }
     use {
         'neoclide/coc.nvim',
@@ -94,25 +87,19 @@ return require('packer').startup(function(use)
           CocInstall coc-eslint
           ]]
         end,
-        config = function() require'plugin/coc'.setup() end
+        config = [[require'config.coc']]
     }
     -- ]]]
 
     use {
         'TimUntersberger/neogit',
-        config = function()
-            local neogit = require('neogit')
-            neogit.setup {}
-        end
+        config = [[require('neogit').setup{}]]
     }
 
     use {
         "npxbr/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"},
-        config = function()
-            vim.g['gruvbox_contrast_dark'] = 'soft'
-            vim.cmd [[colo gruvbox]]
-        end
+        config = [[require'config.gruvbox']],
     }
 
     use {
@@ -132,44 +119,12 @@ return require('packer').startup(function(use)
     use {
         'lewis6991/gitsigns.nvim',
         requires = {'nvim-lua/plenary.nvim'},
-        config = function()
-            require('gitsigns').setup {
-                keymaps = {
-                    -- Default keymap options
-                    noremap = true,
-                    buffer = true,
-
-                    -- is there nicer way to do these?
-                    ['n gj'] = {
-                        expr = true,
-                        "&diff ? 'gj' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"
-                    },
-                    ['n gk'] = {
-                        expr = true,
-                        "&diff ? 'gk' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"
-                    }
-                }
-            }
-        end
-    }
+        config = [[require'config.gitsigns']]
+      }
 
     use {
         'edluffy/specs.nvim',
-        config = function()
-            require('specs').setup {
-                show_jumps = true,
-                min_jump = 30,
-                popup = {
-                    delay_ms = 0, -- delay before popup displays
-                    inc_ms = 10, -- time increments used for fade/resize effects
-                    blend = 40, -- starting blend, between 0-100 (fully transparent), see :h winblend
-                    width = 10,
-                    winhl = "PMenu",
-                    fader = require('specs').linear_fader,
-                    resizer = require('specs').shrink_resizer
-                }
-            }
-        end
+        config = [[require'config.specs']]
     }
 
     use 'AndrewRadev/splitjoin.vim' -- gJ gS, could treesitter do something like this?
