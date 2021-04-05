@@ -13,8 +13,6 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use 'justinmk/vim-dirvish'
 
-    use 'rmagatti/auto-session'
-
     use {
         'junegunn/goyo.vim',
         config = 'vim.cmd[[nnoremap <leader>o :Goyo<CR>]]'
