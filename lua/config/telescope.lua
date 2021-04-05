@@ -1,6 +1,8 @@
 require'telescope'.setup{
-  promptosition = "top",
-  winblend = 20
+  defaults = {
+    prompt_position = "top",
+    winblend = 20
+  }
 }
 
 vim.cmd [[
