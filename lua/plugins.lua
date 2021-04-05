@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
         config =  [[require'config.treesitter']],
     }
 
-    -- js/ts [[[
+    -- js/ts {
     use {
         'pangloss/vim-javascript',
         opt = true,
@@ -89,23 +89,14 @@ return require('packer').startup(function(use)
         end,
         config = [[require'config.coc']]
     }
-    -- ]]]
+    -- }
 
     use {
         'TimUntersberger/neogit',
         config = [[require('neogit').setup{}]]
     }
 
-    use {
-        "npxbr/gruvbox.nvim",
-        requires = {"rktjmp/lush.nvim"},
-        config = [[require'config.gruvbox']],
-    }
 
-    use {
-        'savq/melange'
-        -- config = 'vim.cmd[[colo melange]]'
-    }
 
     use "tversteeg/registers.nvim"
 
@@ -140,5 +131,16 @@ return require('packer').startup(function(use)
       requires = {'kyazdani42/nvim-web-devicons', opt = true},
       config = [[require'config.nvim-tree']]
     }
+
+    -- colorthemes {
+    use 'mhartington/oceanic-next'
+    use 'sainnhe/gruvbox-material'
+    use 'savq/melange'
+    use {
+        "npxbr/gruvbox.nvim",
+        requires = {"rktjmp/lush.nvim"},
+        config = [[require'config.gruvbox']],
+    }
+    --
 
 end)
