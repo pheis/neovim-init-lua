@@ -1,7 +1,7 @@
 require'telescope'.setup{
   defaults = {
-    prompt_position = "top",
-    winblend = 20
+    prompt_position = "bottom",
+    winblend = 0
   }
 }
 

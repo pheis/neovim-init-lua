@@ -14,8 +14,8 @@ return require('packer').startup(function(use)
     use 'justinmk/vim-dirvish'
 
     use {
-      'mhinz/vim-startify',
-      config = [[require'config.startify']],
+        'mhinz/vim-startify',
+        config = [[require'config.startify']],
     }
 
     use {
@@ -122,13 +122,19 @@ return require('packer').startup(function(use)
 
     use {
       'hoob3rt/lualine.nvim',
-      requires = {'kyazdani42/nvim-web-devicons', opt = true},
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        opt = true,
+      },
       config = [[require'config.lualine']]
     }
 
     use {
       'kyazdani42/nvim-tree.lua' ,
-      requires = {'kyazdani42/nvim-web-devicons', opt = true},
+      requires = {
+        'kyazdani42/nvim-web-devicons',
+        opt = true,
+      },
       config = [[require'config.nvim-tree']]
     }
 
@@ -141,6 +147,9 @@ return require('packer').startup(function(use)
         requires = {"rktjmp/lush.nvim"},
         config = [[require'config.gruvbox']],
     }
+    use {
+      'metalelf0/jellybeans-nvim',
+      requires = {"rktjmp/lush.nvim"},
+    }
     --
-
 end)
