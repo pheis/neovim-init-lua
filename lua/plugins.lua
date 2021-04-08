@@ -151,5 +151,8 @@ return require('packer').startup(function(use)
       'metalelf0/jellybeans-nvim',
       requires = {"rktjmp/lush.nvim"},
     }
-    --
+    use 'ishan9299/modus-theme-vim'
+    -- }
+
+    use 'romainl/vim-qf'
 end)
