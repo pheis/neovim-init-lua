@@ -34,7 +34,10 @@ return require('packer').startup(function(use)
         config = [[require'config.fugitive']]
     }
 
-    use 'preservim/vimux'
+    use {
+      'preservim/vimux',
+        config = [[require'config.vimux']]
+    }
 
     use {
         'nvim-telescope/telescope.nvim',
@@ -80,11 +83,12 @@ return require('packer').startup(function(use)
         'neoclide/coc.nvim',
         branch = 'release',
         opt = true,
-        ft = {'javascript', 'typescript', 'typescriptreact'},
+        ft = {'javascript', 'typescript', 'typescriptreact', 'rust'},
         run = function()
           vim.cmd [[
           CocInstall coc-tsserver
           CocInstall coc-eslint
+          CocInstall coc-rust-analyzer
           ]]
         end,
         config = [[require'config.coc']]

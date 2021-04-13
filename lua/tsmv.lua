@@ -1,4 +1,4 @@
-local ts_utils = require 'nvim-treesitter.ts_utils'
+-- local ts_utils = require 'nvim-treesitter.ts_utils'
 
 local M = {}
 
@@ -11,41 +11,47 @@ function M.get_root_node()
   return root_node
 end
 
-
 function get_import_strings(root_node)
   local nodes = {}
   for node in root_node:iter_children() do
     if node:type() == 'import_statement' then
       for child_node in node:iter_children() do
         if child_node:type() == 'string' then
-          local str = get_node_text(child_node)
-          print(str)
+          table.insert(nodes, child_node)
         end
       end
     end
+  end
+  return nodes
 end
 
 
 function M.print_node_types()
   local root_node = M.get_root_node()
-  for node in root_node:iter_children() do
-    if node:type() == 'import_statement' then
+  local lols = get_import_strings(root_node)
+  -- print(lols)
 
-      for n in node:iter_children() do
+  for _, node in pairs(lols) do
+    local start_row, start_col, end_row, end_col = node:range()
+    local line = vim.api.nvim_buf_get_lines(0, start_row, end_row + 1, true)[1]
+    local str = string.sub(line, start_col, end_col)
 
-        if n:type() == 'string' then
 
-          local str = get_node_text(node)
+    local reversed = string.reverse(str)
 
-          print(str)
+    vim.api.nvim_buf_set_text(0, start_row, start_col, end_row, end_col, {reversed})
 
-        end
-
-      end
-
-    end
+    -- print(str)
+    -- print(start_row)
   end
 end
+
+-- vim.api.nvim_get_buf({window})
+
+-- To edit nvim_buf_set_text
+--
+--
+-- HOw to get buffer handle
 
 
 -- _import ??
