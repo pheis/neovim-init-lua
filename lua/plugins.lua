@@ -142,20 +142,12 @@ return require('packer').startup(function(use)
     }
 
     -- colorthemes {
-    use 'mhartington/oceanic-next'
-    use 'sainnhe/gruvbox-material'
-    use 'savq/melange'
     use {
         "npxbr/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"},
         config = [[require'config.gruvbox']],
     }
-    use {
-      'metalelf0/jellybeans-nvim',
-      requires = {"rktjmp/lush.nvim"},
-    }
-    use 'ishan9299/modus-theme-vim'
-    -- }
+    use 'jnurmine/Zenburn'
 
     use 'romainl/vim-qf'
 end)
