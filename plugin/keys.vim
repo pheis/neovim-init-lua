@@ -35,3 +35,6 @@ nnoremap gB :bprevious<CR>
 
 nnoremap <silent> yon :set invnumber<CR>:set invrelativenumber<CR>
 nnoremap <silent> yoh :set invhlsearch<CR>
+
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
